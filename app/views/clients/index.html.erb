@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container">
+  <div id="clients">
+  <%= link_to "New client", new_client_path, class:'btn bg-black text-white my-4' %>
+
+  <table id="example" class="display  p-5 mt-5 rounded text-white" style="width:100%">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Movie</th>
+          <th scope="col" colspan="3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @clients.each do |client| %>
+          <tr class="text-white">
+            <td><%= client.id %></td>
+            <td><%= client.name %></td>
+            <td><%= client.age %></td>
+            <td><%= client.movies.first.try(:name) %></td>
+            <td class="d-flex">
+            <%= link_to "Show", client,class:'btn text-white'  %>
+            <%= link_to "Edit", edit_client_path(client),class:'btn text-white'%>
+            <%= button_to "Destroy", client, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn text-danger'%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  </div>
